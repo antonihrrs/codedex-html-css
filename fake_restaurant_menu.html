@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Le repère</title>
+    <style> 
+        header {
+            padding: 2rem;
+            background: #19324f;
+            
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 100%;
+            max-height: 10px;
+            margin: auto;
+        }
+
+
+        .container {
+            background: #19324f;
+            padding: 15px;
+            max-width: 1200px;
+            margin: auto;
+            border-radius: 10px;
+            box-shadow: 0 0 12px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            color: #f9f5ea;
+        }
+
+        .header-link-container {
+            background: #F7F3EB;
+            padding: 15px;
+            max-width: 600px;
+            margin: auto;
+            border-radius: 10px;
+
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+
+            align-items: center;
+        }
+
+        .btn {
+            position: relative;
+            flex: 0 1 300px;
+            
+            padding: 1rem;
+            
+            background: #f9f5ea; 
+            border-radius: 5px;
+            box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.6);
+            overflow: hidden;
+            transition: box-shadow 0.3s ease;
+            
+            text-align: center;
+            text-decoration: none; 
+            color: #2e2e2e;             
+            font-weight: bold;
+            
+        }
+
+        .btn * {
+            position: relative;
+            z-index: 1;
+        }
+
+        .btn::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+            transition: filter 0.4s ease;
+        }
+        
+        .btn:hover::before {
+            filter: blur(3px);
+        }
+        
+        .btn:hover {
+            box-shadow: 4px 8px 20px rgb(0, 0, 0);
+            background-color: rgb(246, 239, 220);
+            transition: box-shadow 0.5s ease, background-color 0.5s ease;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            color: #f9f5ea;
+        }
+        
+        .logo-container h1 {
+            margin: 0; 
+            font-size: 2rem; 
+        }
+
+        body {
+            font-family: system-ui, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f9f5ea;
+            color: #2e2e2e;
+            line-height: 1.6;
+            text-align: center;
+        }
+
+        .light-container {
+            background: #f8f5ef;
+            padding: 15px;
+            max-width: 1200px;
+            margin: auto;
+            border-radius: 10px;
+            box-shadow: 0 0 12px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            color: #1e1c1c;
+        }
+
+        .food-display-container {
+            display: flex;
+            justify-content: center;
+            gap: 2rem; 
+            flex-wrap: wrap;
+        }
+
+        .food-display-container figure {
+            margin: 0;
+            flex: 1 1 300px;
+            max-width: 350px;
+        }
+
+        .wine-table-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: transparent;
+            
+        }
+
+        .wine-table {
+            width: 100%;
+
+            font-size: 1rem;
+            color: #1e1c1c;
+        }
+
+        .wine-table th,
+        .wine-table td {
+            padding: 0.5rem;
+            text-align: left;
+        }
+
+        .wine-table th {
+            border-bottom: 2px solid #19324f;
+            font-weight: bold;
+            color: #2e2e2e;
+            text-align: center;
+            
+        }
+
+        .wine-table td {
+            border-bottom: 1px solid #e0ddd5;
+        }
+
+
+        input[type="number"] {
+            width: 70px;
+            padding: 0.5rem 0.75rem;
+            font-size: 1rem;
+            font-weight: bold;
+            color: #2e2e2e;
+
+            background-color: #f9f5ea;
+            border: 2px solid #19324f;
+            border-radius: 5px;
+            text-align: center;
+            transition: box-shadow 0.3s ease, border-color 0.3s ease;
+        }
+
+        input[type=number]::-webkit-inner-spin-button, 
+        input[type=number]::-webkit-outer-spin-button { 
+            -webkit-appearance: none; 
+            margin: 0; 
+        }
+
+        input[type="number"]:focus {
+            outline: none;
+            border-color: #1e4268;
+            box-shadow: 0 0 8px 2px rgba(255, 255, 255, 0.7);
+            background-color: #fffdf9;
+        }
+
+
+        .check-out-btn {
+            position: relative;
+            flex: 0 1 300px;
+            
+            padding: 1rem;
+            
+            background: #19324f; 
+            border-radius: 9px;
+            border: none;
+            box-shadow: 2px 4px 10px #fffdf9;
+            overflow: hidden;
+            transition: box-shadow 0.3s ease;
+            
+            text-align: center;
+            text-decoration: none; 
+            color: #f9f5ea;             
+            font-weight: bold;
+        }
+
+        .check-out-btn * {
+            position: relative;
+            z-index: 1;
+        }
+
+        .check-out-btn::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+            transition: filter 0.4s ease;
+        }
+        
+        .check-out-btn:hover::before {
+            filter: blur(3px);
+        }
+        
+        .check-out-btn:hover {
+            box-shadow: 0px 0px 25px #ffffff;
+            background-color: #1e4268;
+
+            transition: box-shadow 0.5s ease, background-color 0.5s ease;
+        }
+
+    </style>
+
+    </head>
+
+    <body>
+        <header>
+            <div class="logo-container">
+                <img id="header-img" src="pngegg(1).png" alt="Le Repère logo" style="width: 80px; height: auto;" />
+            
+                <h1>Le repère</h1>
+            </div>
+            <div>
+                <a href="#menu" class="btn">Menu</a>
+                <a href="#order-form" class="btn">Place Your Order</a>
+            </div>
+        </header>
+        <br>
+        <main>
+            <div class="container">
+                <section id="menu">
+                    <h2>Menu</h2>
+                        <div class="light-container">
+                            <article>
+                                <h2>Entrées</h2>
+                                <div class="food-display-container">
+                                    <figure style="margin:0; display: inline;">
+                                        <img
+                                            height="200"
+                                            src="https://shorturl.at/FE7XY" 
+                                            alt="beets salad" 
+                                        />
+                                        <figcaption>
+                                            <h3>Red and Chioggia beets salad</h3>
+                                            <p>
+                                                <i>With ricotta salata,<br>Nice lettuce and pine kernels.
+                                                <br>Dressed with olive oil, white balsamic vinegar
+                                                <br>Dijon mustard, pressed garlic, and citrus juice.
+                                                <br>Seasoned with salt and freshly ground pepper.
+                                                </i>
+                                            </p>
+                                            <i>14€</i>
+                                        </figcaption>
+                                    </figure>
+
+                                    <figure style="margin: 0; display: inline;">
+                                        <img 
+                                            height="200"
+                                            src="https://shorturl.at/E6pqF" 
+                                            alt="cuttlefish with persillade"
+                                        />
+                                        <figcaption>
+                                            <h3>Cuttlefish in persillade</h3>
+                                            <p>
+                                                <i>Served with a classic persillade of parsley, garlic, and olive oil.
+                                                <br>Dressed with cuttlefish ink, citrus, olive oil,
+                                                <br>minced garlic, salt and freshly ground pepper
+                                                </i>
+                                            </p>
+                                            <i>17€</i>
+                                        </figcaption>
+                                    </figure>
+                                </div>
+                            </article>
+                            <br>
+                            <article>
+                                <h2>Main course</h2>
+                                <div class="food-display-container">
+                                    <figure style="margin:0; display: inline;">
+                                        <img 
+                                            height="200"
+                                            src="https://shorturl.at/fj1Id" 
+                                            alt="bouillabaisse"
+                                        />
+                                        <figcaption>
+                                            <h3>Bouillabaisse</h3>
+                                            <p>
+                                                <i>A classic Provençal Marsaillais dish with salmon, pickerel, monkfish, sea bass and mussels
+                                                
+                                                <br><br>
+                                                Served with rouille, aïoli and large croutons
+                                                <br>
+                                                <br>Includes onions, tomatoes, leek whites,
+                                                <br>citrus, olive oil, garlic, bay leaf, thyme,
+                                                <br>parsley, dill, salt, and pepper.
+                                                </i>
+                                            </p>
+                                            <i>29€</i>
+                                        </figcaption>
+                                    </figure>
+                                    
+                                    <figure style="margin:0; display: inline;">
+                                        <img 
+                                            height="200"
+                                            src="https://shorturl.at/k5Qp7" 
+                                            alt="Tian de légumes"
+                                        />
+                                        <figcaption>
+                                            <h3>Vegetable Tian</h3>
+                                            <p>
+                                                <i>A baked dish of thinly sliced summer vegetables<br>
+                                                Zucchini, eggplant, tomatoes, and onions
+                                                <br>
+                                                <br>drizzled with olive oil,
+                                                <br>slow-roasted with garlic and herbs thyme,  
+                                                <br>bay leaf, rosemary, salt, and pepper.
+                                                </i>
+                                            </p>
+                                            <i>21€</i>
+                                        </figcaption>
+                                    </figure>
+                                </div>
+                            </article>
+                            <br>
+                            <article>
+                                <h2>Dessert</h2>
+                                <div class="food-display-container">
+                                    <figure style="margin:0; display: inline;">
+                                        <img 
+                                            height="200"
+                                            src="https://shorturl.at/I2zPJ" 
+                                            alt="Tarte aux citrons"
+                                        />
+                                        <figcaption>
+                                            <h3>Tarte aux citrons meringuée</h3>
+                                            <p>
+                                                <i>Delicate tart with zesty lemon curd
+                                                <br>with a crisp buttery crust
+                                                <br>Topped with a light meringue
+                                                <br>
+                                                </i>
+                                            </p>
+                                            <i>10€</i>
+                                        </figcaption>
+                                    </figure>
+                                    
+                                    <figure style="margin:0; display: inline;">
+                                        <img 
+                                            height="200"
+                                            src="https://shorturl.at/NwNkG" 
+                                            alt="Clafoutis"
+                                        />
+                                        <figcaption>
+                                            <h3>Clafoutis</h3>
+                                            <p>
+                                                <i>Calfoutis with seasonal fruits :
+                                                <br>Cherries, apricot, or figs
+                                                <br>Lightly sweet and soft
+                                                <br>Served with a pinch of fresh mint
+                                                </i>
+                                            </p>
+                                            <i>9€</i>
+                                        </figcaption>
+                                    </figure>
+
+                                    <figure style="margin:0; display: inline;">
+                                        <img 
+                                            height="200"
+                                            src="https://shorturl.at/oRNzj" 
+                                            alt="citron vert + basilic"
+                                        />
+                                        <figcaption>
+                                            <h3>Lime basel sorbet</h3>
+                                            <p>
+                                                <i>Home made lime sorbet
+                                                <br>infused with fresh basil
+                                                </i>
+                                            </p>
+                                            <i>7€</i>
+                                        </figcaption>
+                                    </figure>
+                                </div>
+                            </article>
+                            <br>
+                            <article>
+                                <h2>Wines - Drinks</h2>
+                                <div class="wine-table-container">
+                                  <table class="wine-table">
+                                    <thead>
+                                      <tr>
+                                        <th></th>
+                                        <th>Glass</th>
+                                        <th>Bottle</th>
+                                      </tr>
+                                    </thead>
+                                    <tbody>
+                                      <tr>
+                                        <td>Sauvignon Blanc</td>
+                                        <td>6€</td>
+                                        <td>24€</td>
+                                      </tr>
+                                      <tr>
+                                        <td>Rosé - Côtes de Provence</td>
+                                        <td>5.5€</td>
+                                        <td>22€</td>
+                                      </tr>
+                                      <tr>
+                                        <td>Picpoul de Pinet</td>
+                                        <td>6€</td>
+                                        <td>25€</td>
+                                      </tr>
+                                      <tr>
+                                        <td>Blanc de Bandol </td>
+                                        <td>7€</td>
+                                        <td>28€</td>
+                                      </tr>
+                                      <tr>
+                                        <td>Prosecco</td>
+                                        <td>5€</td>
+                                        <td>20€</td>
+                                      </tr>
+                                      <tr>
+                                        <td>Muscat de Beaumes-de-Venise</td>
+                                        <td>6.5€</td>
+                                        <td>26€</td>
+                                      </tr>
+                                      <tr>
+                                        <td>Limoncello</td>
+                                        <td>4€</td>
+                                        <td>–</td>
+                                      </tr>
+                                    </tbody>
+                                  </table>
+                                </div>
+                              </article>
+                                                           
+                        </div>
+                </section>
+
+                <section id="order-form">
+                    <h2>Place your order</h2>
+                    <div class="light-container">
+                        <form>
+                            <i>Pre-order</i>
+                            <p><b><i>Enter the quantity for each item you wish to order :</i></b></p>
+                    
+                            <h3>Entrées</h3>
+                            <div>
+                                <label for="beets-salad-qty">Red and Chioggia beets salad </label>
+                                <input type="number" id="beets-salad-qty" name="beets_salad_qty" min="0" value="0">
+                            </div>
+                            <br>
+                            <div>
+                                <label for="cuttlefish-qty">Cuttlefish in persillade </label>
+                                <input type="number" id="cuttlefish-qty" name="cuttlefish_qty" min="0" value="0">
+                            </div>
+                            <br>
+                    
+                            <h3>Main Course</h3>
+                            <div>
+                                <label for="bouillabaisse-qty">Bouillabaisse </label>
+                                <input type="number" id="bouillabaisse-qty" name="bouillabaisse_qty" min="0" value="0">
+                                <p>Something to specify ?</p>
+                                <textarea id="order-notes" name="order_notes" rows="4" cols="40" 
+                                placeholder="'no mussels', 'If very spicy : not a lot of rouille'"></textarea>
+                            </div>
+                            <br>
+                            <div>
+                                <label for="tian-qty">Vegetable Tian </label>
+                                <input type="number" id="tian-qty" name="tian_qty" min="0" value="0">
+                            </div> 
+                            <br>               
+                            <h3>Desserts</h3>
+                            <div>
+                                <label for="tarte-qty">Tarte aux citrons meringuée </label>
+                                <input type="number" id="tarte-qty" name="tarte_qty" min="0" value="0">
+                            </div>
+                            <br>
+                            <div>
+                                <label for="clafoutis-qty">Clafoutis </label>
+                                <input type="number" id="clafoutis-qty" name="clafoutis_qty" min="0" value="0">
+                            </div>
+                            <br>
+                            <div>
+                                <label for="sorbet-qty">Lime basil sorbet </label>
+                                <input type="number" id="sorbet-qty" name="sorbet_qty" min="0" value="0">
+                                
+                                <p>Extra sprig of basil ?</p>
+                                <input type="radio" id="yes-basil" name="extra_basil" value="yes-basil">
+                                <label for="yes-basil">Yes</label>
+                                <input type="radio" id="no-basil" name="extra_basil" value="no-basil">
+                                <label for="no-basil">No</label>
+                            </div>
+                            <br>
+                    
+                            <h3>Wines - drinks</h3>
+                            <div>
+                                <label for="sauvignon-glass-qty">Sauvignon Blanc - <b>glass</b></label>
+                                <input type="number" id="sauvignon-glass-qty" name="sauvignon_glass_qty" min="0" value="0">
+                            </div>
+                            <div>
+                                <label for="sauvignon-bottle-qty">Sauvignon Blanc - <b>bottle</b></label>
+                                <input type="number" id="sauvignon-bottle-qty" name="sauvignon_bottle_qty" min="0" value="0">
+                            </div>
+                            <br>
+                            <div>
+                                <label for="cdp-glass-qty">Côtes de Prvence - <b>glass</b></label>
+                                <input type="number" id="cdp-glass-qty" name="cdp_glass_qty" min="0" value="0">
+                            </div>
+                            <div>
+                                <label for="cdp-bottle-qty">Côtes de Provence - <b>bottle</b></label>
+                                <input type="number" id="cdp-bottle-qty" name="cdp_bottle_qty" min="0" value="0">
+                            </div>
+                            <br>
+                            <div>
+                                <label for="picoul-glass-qty">Picpoul de Pinet - <b>glass</b></label>
+                                <input type="number" id="picoul-glass-qty" name="picoul_glass_qty" min="0" value="0">
+                            </div>
+                            <div>
+                                <label for="picoul-bottle-qty">Picpoul de Pinet - <b>bottle</b></label>
+                                <input type="number" id="picoul-bottle-qty" name="picoul_bottle_qty" min="0" value="0">
+                            </div>
+                            <br>
+                            <div>
+                                <label for="bandol">Blanc de Bandol - <b>glass</b></label>
+                                <input type="number" id="bandol-glass-qty" name="bandol_glass_qty" min="0" value="0">
+                            </div>
+                            <div>
+                                <label for="bandol-bottle-qty">Blanc de Bandol - <b>bottle</b></label>
+                                <input type="number" id="bandol-bottle-qty" name="bandol_bottle_qty" min="0" value="0">
+                            </div>
+                            <br>
+                            <div>
+                                <label for="prosecco-glass-qty">Prosecco - <b>glass</b></label>
+                                <input type="number" id="prosecco-glass-qty" name="prosecco_glass_qty" min="0" value="0">
+                            </div>
+                            <div>
+                                <label for="prosecco-bottle-qty">Prosecco - <b>bottle</b></label>
+                                <input type="number" id="prosecco-bottle-qty" name="prosecco_bottle_qty" min="0" value="0">
+                            </div>
+                            <br>
+                            <div>
+                                <label for="muscat-glass-qty">Muscat de Beaumes-de-Venise - <b>glass</b></label>
+                                <input type="number" id="muscat-glass-qty" name="muscat_glass_qty" min="0" value="0">
+                            </div>
+                            <div>
+                                <label for="muscat-bottle-qty">Muscat de Beaumes-de-Venise - <b>bottle</b></label>
+                                <input type="number" id="muscat-bottle-qty" name="muscat_bottle_qty" min="0" value="0">
+                            </div>
+                            <br>
+                            <div>
+                                <label for="limoncello-qty">Limoncello - <b>shot</b></label>
+                                <input type="number" id="limoncello-qty" name="limoncello_shot_qty" min="0" value="0">
+                            </div>
+                            <br>
+                    
+                            <input class="check-out-btn" type="submit" value="Go To Checkout">
+                        </form>
+                    </div>
+                </section>
+            </div>
+        </main>
+        <br>
+        <footer>
+            Made with love by Antoneon
+        </footer>
+        <br>
+    </body>
+</html>
